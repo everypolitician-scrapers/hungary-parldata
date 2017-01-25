@@ -27,7 +27,7 @@ EODATA
 @termdata = CSV.parse(termdates, headers: true, header_converters: :symbol)
 
 def noko_q(endpoint, h)
-  result = RestClient.get (@API_URL % endpoint), params: h
+  result = RestClient.get (@API_URL % endpoint), params: h, accept: :xml
   doc = Nokogiri::XML(result)
   doc.remove_namespaces!
   entries = doc.xpath('resource/resource')
